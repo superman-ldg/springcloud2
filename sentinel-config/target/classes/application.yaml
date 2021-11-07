@@ -1,0 +1,25 @@
+server:
+  port: 8888
+spring:
+  cloud:
+    sentinel:
+      eager: false
+      enabled: true
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+      datasource:   #sentinel的持久化
+        ds1:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            dataId: ${spring.application.name}
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow #flow流控规则 #degrade降级规则 #paramFlow热点规则
+
+
+
+#激活Sentinel对feign的支持
+feign:
+  sentinel:
+    enabled: true

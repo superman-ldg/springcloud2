@@ -1,0 +1,51 @@
+server:
+  port: 6000
+
+spring:
+  application:
+    name: sentinel-gateway-6000
+  main:
+      allow-bean-definition-overriding: true
+  cloud:
+    gateway:
+      enabled: true
+      discovery:
+        locator:
+          lower-case-service-id: true
+      routes:
+        # Add your routes here.
+        - id: aliyun_route
+          uri: https://www.aliyun.com/
+          predicates:
+            - Path=/product/**
+        - id: httpbin_route
+          uri: https://httpbin.org
+          predicates:
+            - Path=/httpbin/**
+          filters:
+            - RewritePath=/httpbin/(?<segment>.*), /$\{segment}
+        #认证服务路由
+        - id: auth-service
+          predicates:
+            - Path=/auth-service/**
+          uri: lb://spring-cloud-nacos-auth-service
+          filters:
+            - StripPrefix=1
+    sentinel:
+        transport:
+          dashboard: localhost:8080
+        datasource.ds2.file:
+          file: "classpath: gateway.json"
+          ruleType: gw-flow
+        datasource.ds1.file:
+          file: "classpath: api.json"
+          ruleType: gw-api-group
+    nacos:
+        discovery:
+          server-addr: 47.106.132.130:8848
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

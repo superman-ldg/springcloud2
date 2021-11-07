@@ -1,0 +1,32 @@
+server:
+  port: 7001
+
+spring:
+  application:
+    name: Erueka-Server
+
+eureka:
+  server:
+    enable-self-preservation: true
+    renewal-percent-threshold: 0.85
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defalutZone: http://${eureka.instance.hostname}:${server.port}/erueka/
+    registry-fetch-interval-seconds: 30
+
+management:
+  endpoints:
+    web:
+      exposure:
+        exclude: '*'
+  endpoint:
+    hystrix:
+      stream:
+        enabled: true
+ribbon:
+  eureka:
+    enabled: true

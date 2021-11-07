@@ -1,0 +1,15 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: nacos-config
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 47.106.132.130:8848
+      config:
+        file-extension: yaml
+        server-addr: 47.106.132.130:8848
+        group: DEV_GROUP
+        namespace: 716afc45-4eaf-4901-8366-b1edf5cbb410

@@ -1,0 +1,51 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: routs01
+          uri: lb://provider8001
+          predicates:
+            - Path=/gateway/**
+          filters:
+            - StripPrefix=1
+            - name: Hystrix
+              args:
+                name: fallbackAA
+                fallbackUri: forward:/fallbackA
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@userKeyResolverIp}'
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.bursCapacity: 20
+
+
+hystrix:
+  command:
+    fallbackAA:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+
+ribbon:
+  eureka:
+    enabled: true
+  ConnectTimeout: 6000 #单位ms,请求连接超时时间
+  ReadTimeout: 6000 #单位ms,请求处理的超时时间

@@ -1,0 +1,36 @@
+server:
+  port: 8001
+mybatis:
+  type-aliases-package: com.ldg.cloud.pojo
+
+spring:
+  application:
+    name: provider8001
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://47.106.132.130:3306/cloud?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+  cloud:
+    circuitbreaker:
+      hystrix:
+        enabled: true
+
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+hystrix:
+  metrics:
+    enabled: true

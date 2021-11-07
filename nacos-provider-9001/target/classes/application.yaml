@@ -1,0 +1,34 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: Nacos-provider-9001
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 47.106.132.130:8848
+    sentinel:
+      enabled: true
+      transport:
+        dashboard: localhost:8080
+      eager: false
+
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://47.106.132.130:3306/cloud?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+
+
+management:
+  endpoint:
+    web:
+      exposure:
+        include: '*'
+
+feign:
+  sentinel:
+    enabled: true

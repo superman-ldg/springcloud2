@@ -1,0 +1,42 @@
+server:
+  port: 80
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+spring:
+  application:
+    name: consumer-openfeign-80
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+#ribbon:
+#  ReadTimeout: 2000
+#  ConnectTimeout: 2000
+feign:
+  hystrix:
+    enabled: true
+ # okhttp:
+#    enabled: true
+#  client:
+ #   config:
+#    default-config:
+#  httpclient:
+ #   enabled: true
+
+#feign:
+#  hystrix:
+#    enabled: true
+#ribbon:
+#  eureka:
+#    enabled: true
+#  eager-load:
+ribbon:
+  eureka:
+    enabled: true
+#    enabled: true
