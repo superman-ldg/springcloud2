@@ -26,6 +26,7 @@
         <module>sentinel-gateway</module>
         <module>redisson-config</module>
         <module>redis-test</module>
+        <module>swagger2</module>
     </modules>
     <packaging>pom</packaging>
 
