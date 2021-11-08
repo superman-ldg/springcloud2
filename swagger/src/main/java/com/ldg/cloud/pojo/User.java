@@ -1,4 +1,4 @@
-package com.example.demo.pojo;
+package com.ldg.cloud.pojo;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
