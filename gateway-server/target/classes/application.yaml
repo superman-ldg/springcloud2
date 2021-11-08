@@ -20,6 +20,12 @@ spring:
               args:
                 name: fallbackAA
                 fallbackUri: forward:/fallbackA
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@userKeyResolverIp}'
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.bursCapacity: 20
+
 
 hystrix:
   command:

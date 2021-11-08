@@ -14,6 +14,52 @@ spring:
     username: root
     password: 123456
 
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        -id: after_route
+        uri: http://www.baidu.com
+        predicates:
+          -After=2021-08-05T18:20:00
+          -Before=
+          -Between=
+          -Cookie=cookiename, cookievalue
+          -Header=X-Request-Id,\d+
+          -Method=GET
+          -Path=/foo/{segment},/bar/{segment}    # 匹配对应的URL请求，将匹配到的请求追加在目标 URI 之后
+          -Query=foo, ba.  #路由会匹配所有包含foo参数，并且foo的内容为诸如：bar或baz等符合ba.正则规则的请求。
+          -RemoteAddr=127.0.0.1/27
+          # 匹配远程地址请求RemoteAddr的请求，0表示子网掩码
+          - RemoteAddr=192.168.10.1/0
+        #- Query=token # 匹配请求参数中包含 token 的请求
+        # - Query=token, abc. # 匹配请求参数中包含 token 并且参数值满足正则表达式 abc.(abc开头，后面匹配任意字符) 的请求
+        filters:
+            -AddRequestHeader=X-Request-Foo, Bar #对匹配的请求，会额外添加X-Request-Foo:Bar的header。
+              -AddRequestParameter=foo, bar #对匹配的请求，会额外添加foo=bar的请求参数。
+              -AddResponseHeader=X-Response-Foo, Bar #对匹配的请求，响应返回时会额外添加X-Response-Foo:Bar的header返回。
+              -Hystrix=myCommandName #那么剩下的过滤器，就会包装在名为myCommandName的HystrixCommand中运行。
+              - name: Hystrix
+              args:
+                name: fallbackmd
+                fallbackUri: forword:/incaseoffailure
+                - name: FallbackHeaders
+                    args:
+                    executionExceptionTypeHeaderName: Test-Header
+                    #FallbackHeaders GatewayFilter Factory可以将Hystrix执行的异常信息添加到外部请求的
+                - PrefixPath = /mypath #如果一个请求是/hello，通过上面路由，就会将请求修改为/mypath/hello。
+                - PreserveHostHeader #PreserveHostHeader GatewayFilter Factory会保留原始请求的host头信息，并原封不动的转发出去，
+                #而不是被gateway的http客户端重置。
+                - name: RequeatRateLimiter #基于redis的限流
+                    args:
+                      redis-rate-Limiter.replenishRate: 10
+                      redis-rate-Limiter.burstCapacity: 20
+                        key-resolver: "#{@userKeyResolver}"
+                        #redis-rate-limiter.replenishRate配置的是每秒允许通过的请求数，其实就是令牌桶的填充速率。
+                        #redis-rate-limiter.burstCapacity配置的是一秒内最大的请求数，其实就是令牌桶的最大容量，如果设置为0，则会阻塞所有请求。
+                        #所以可以通过设置相同的replenishRate和burstCapacity来实现匀速的速率控制，通过设置bu
 
 
 

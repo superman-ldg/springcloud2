@@ -14,10 +14,12 @@
         <module name="rabbitmq" />
         <module name="demo" />
         <module name="swagger" />
+        <module name="ES" />
         <module name="springcloud-api" />
         <module name="rabbitmq2" />
         <module name="nacos-config" />
         <module name="sentinel-gateway" />
+        <module name="ManyThread" />
         <module name="redisson-config" />
         <module name="eureka-server7001" />
         <module name="consumer80" />
@@ -31,6 +33,9 @@
         <module name="consumer-openfeign80" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="多线程" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

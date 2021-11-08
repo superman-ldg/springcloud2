@@ -27,6 +27,9 @@
         <module>redisson-config</module>
         <module>redis-test</module>
         <module>swagger2</module>
+        <module>ES</module>
+        <module>多线程</module>
+        <module>ManyThread</module>
     </modules>
     <packaging>pom</packaging>
 
