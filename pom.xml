@@ -30,6 +30,7 @@
         <module>ES</module>
         <module>多线程</module>
         <module>ManyThread</module>
+        <module>orika-test</module>
     </modules>
     <packaging>pom</packaging>
 
