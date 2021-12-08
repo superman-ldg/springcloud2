@@ -12,15 +12,18 @@
         <module name="swagger" />
         <module name="rabbitmq2" />
         <module name="nacos-config" />
+        <module name="provior" />
         <module name="sentinel-gateway" />
         <module name="provider8002" />
         <module name="provider8001" />
         <module name="orika-test" />
+        <module name="springmvc" />
         <module name="redis-test" />
         <module name="sentinel-config" />
         <module name="swagger2" />
         <module name="rabbitmq" />
         <module name="ES" />
+        <module name="conumer" />
         <module name="springcloud-api" />
         <module name="ManyThread" />
         <module name="redisson-config" />
@@ -30,6 +33,7 @@
         <module name="eureka-server7002" />
         <module name="sentinel-gateway6000" />
         <module name="nacos-consumer-9000" />
+        <module name="mybatis-plus" />
         <module name="nacos-provider-9001" />
         <module name="consumer-openfeign80" />
       </profile>

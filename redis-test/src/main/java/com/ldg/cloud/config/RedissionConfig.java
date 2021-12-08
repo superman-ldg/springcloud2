@@ -7,11 +7,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RedissionConfig {
-    @Bean
-    public Redisson redisson(){
-        Config config=new Config();
-        config.useSingleServer().setAddress("").setDatabase(0);
-        return (Redisson) Redisson.create(config);
-    }
+//    @Bean
+//    public Redisson redisson(){
+//        Config config=new Config();
+//        config.useSingleServer().setAddress("").setDatabase(0);
+//        return (Redisson) Redisson.create(config);
+//    }
 
 }

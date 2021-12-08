@@ -4,6 +4,9 @@ import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.utils.RabbitMqUtils;
 
+/**
+ * @author Administrator
+ */
 public class ProducerTTl {
     private static final String NORMAL_EXCHANGE = "normal_exchange";
     public static void main(String[] argv) throws Exception {

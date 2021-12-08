@@ -1,0 +1,19 @@
+server:
+  port: 8888
+spring:
+  rabbitmq:
+    addresses: 47.106.132.130
+    password: admin
+    username: admin
+    port: 5672
+    virtual-host: /
+    publisher-returns: true #消息发生到交换机，开启确认机制回调
+    publisher-confirm-type: correlated  #消息发生到交换机，开启返回机制回调
+    listener:    #消费者
+      simple:
+        acknowledge-mode: manual
+        concurrency: 1
+        max-concurrency: 10
+        retry:
+          enabled: true
+debug: true

@@ -5,6 +5,9 @@ import com.rabbitmq.client.DeliverCallback;
 import com.rabbitmq.utils.RabbitMqUtils;
 import com.rabbitmq.utils.SleepUtils;
 
+/**
+ * @author Administrator
+ */
 public class Work03 {
     private static final String ACK_QUEUE_NAME="ack_queue";
     public static void main(String[] args) throws Exception {

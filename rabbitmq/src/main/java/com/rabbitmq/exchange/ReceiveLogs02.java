@@ -7,6 +7,9 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 
+/**
+ * @author Administrator
+ */
 public class ReceiveLogs02 {
 
     private static final String EXCHANGE_NAME = "logs";

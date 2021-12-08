@@ -31,6 +31,9 @@
         <module>多线程</module>
         <module>ManyThread</module>
         <module>orika-test</module>
+        <module>springSecurity_OAuth2</module>
+        <module>mybatis-plus</module>
+        <module>rabbitmq3</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -25,8 +25,9 @@ public class MsgTtlQueueConfig {
         return QueueBuilder.durable(QUEUE_C).withArguments(args).build();
     }
     // 声明队列 B 绑定 X 交换机
-    @Bean
-    public Binding queuecBindingX(@Qualifier("queueC") Queue queueC,
-                                  @Qualifier("xExchange") DirectExchange xExchange){
-        return BindingBuilder.bind(queueC).to(xExchange).with("XC");
-    } }
+//    @Bean
+//    public Binding queuecBindingX(@Qualifier("queueC") Queue queueC,
+//                                  @Qualifier("xExchange") DirectExchange xExchange){
+//        return BindingBuilder.bind(queueC).to(xExchange).with("XC");
+//    }
+}
